@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="mainPref"
+        android:summary="Основные настройки"
+        android:title="Основные настройки">
+        <CheckBoxPreference
+            android:title="Отключить двухнедельный режим"
+            android:defaultValue="false"
+            android:key="twoWeeksModeDisabled" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="mainPref"
+        android:summary="Уведомления"
+        android:title="Уведомления">
+        <CheckBoxPreference
+            android:title="Отключить уведомления при запуске"
+            android:defaultValue="false"
+            android:key="startNotifications" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="autoWeek"
+        android:summary="Автоматическое определение недели"
+        android:title="Автоматическое определение недели">
+        <Preference
+            android:title="Установить текущую неделю"
+            android:key="setWeek" />
+        <Preference
+            android:title="Убрать текущую неделю"
+            android:key="delWeek" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="autoWeek"
+        android:summary="Уникальный идентификатор"
+        android:title="Уникальный идентификатор">
+        <Preference
+            android:title="Показать уникальный идентификатор"
+            android:key="showId" />
+    </PreferenceCategory>
+</PreferenceScreen>

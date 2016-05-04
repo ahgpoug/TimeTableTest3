@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_about">О программе</string>
+    <string name="action_schedule">Расписание пар</string>
+    <string name="action_now">Показать следующую пару</string>
+    <string name="action_edit">Редактировать</string>
+    <string name="action_sync">Синхронизировать</string>
+    <string name="action_clear">Очистить поля</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_exit">Выход</string>
+    <string name="add_lesson">Добавить пару</string>
+    <string name="remove_lesson">Удалить пару</string>
+    <string name="number_of_lessons">Пары</string>
+    <string-array name="entries">
+        <item>Красная</item>
+        <item>Зеленая</item>
+    </string-array>
+    <string-array name="entry_values">
+        <item>Red</item>
+        <item>Green</item>
+    </string-array>
+</resources>
