@@ -38,6 +38,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
@@ -53,9 +55,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends AppCompatActivity
 {
-    private Menu mn;
     private int num;
     private int color;
     private ListView lstView;
@@ -76,6 +79,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fabric.with(this, new Crashlytics());
+        logUser();
+
         setContentView(R.layout.activity_main);
 
         verifyPermissions(this);
@@ -222,9 +229,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void logUser() {
+        Crashlytics.setUserEmail("maxkost5@gmail.com");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mn = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -293,6 +303,7 @@ public class MainActivity extends AppCompatActivity
                     builder.setNegativeButton("Загрузить на сервер", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int arg1) {
                             upload = true;
+                            xId = GlobalVariables.id;
                             new FtpInfo().execute();
                         }
                     });
@@ -352,7 +363,6 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         DataBaseIO.writeCfg();
         finish();
-        return;
     }
 
     private void getNow(){
@@ -635,7 +645,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         protected Void doInBackground(Void... params) {
-            FTPClient ftp = null;
+            FTPClient ftp;
             String ip = "aberon.atwebpages.com";
             String user = "2102708_guest";
             String pass = "12345678M";
@@ -705,6 +715,7 @@ public class MainActivity extends AppCompatActivity
     class FtpInfo extends AsyncTask<Void, Void, Void> {
         ProgressDialog dialog;
         String tm = "";
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -717,7 +728,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         protected Void doInBackground(Void... params) {
-            FTPClient ftp = null;
+            FTPClient ftp;
             String ip = "aberon.atwebpages.com";
             String user = "2102708_guest";
             String pass = "12345678M";
@@ -761,7 +772,7 @@ public class MainActivity extends AppCompatActivity
             } catch (Exception e){
                 modTime = "неизвестно";
             }
-            String st = "";
+            String st;
             if (upload)
                 st = "сервере";
             else
